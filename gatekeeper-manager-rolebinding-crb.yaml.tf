@@ -3,7 +3,7 @@ resource "kubernetes_manifest" "clusterrolebinding_gatekeeper_manager_rolebindin
 
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRoleBinding"
+    "kind"       = "ClusterRoleBinding"
     "metadata" = {
       "labels" = {
         "gatekeeper.sh/system" = "yes"
@@ -12,13 +12,13 @@ resource "kubernetes_manifest" "clusterrolebinding_gatekeeper_manager_rolebindin
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
-      "kind" = "ClusterRole"
-      "name" = "gatekeeper-manager-role"
+      "kind"     = "ClusterRole"
+      "name"     = "gatekeeper-manager-role"
     }
     "subjects" = [
       {
-        "kind" = "ServiceAccount"
-        "name" = "gatekeeper-admin"
+        "kind"      = "ServiceAccount"
+        "name"      = "gatekeeper-admin"
         "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
       },
     ]

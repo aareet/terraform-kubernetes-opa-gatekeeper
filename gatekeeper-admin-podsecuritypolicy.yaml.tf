@@ -3,7 +3,7 @@ resource "kubernetes_manifest" "podsecuritypolicy_gatekeeper_admin" {
 
   manifest = {
     "apiVersion" = "policy/v1beta1"
-    "kind" = "PodSecurityPolicy"
+    "kind"       = "PodSecurityPolicy"
     "metadata" = {
       "annotations" = {
         "seccomp.security.alpha.kubernetes.io/allowedProfileNames" = "*"

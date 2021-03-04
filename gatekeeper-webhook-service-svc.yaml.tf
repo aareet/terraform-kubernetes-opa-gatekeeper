@@ -3,26 +3,26 @@ resource "kubernetes_manifest" "service_gatekeeper_webhook_service" {
 
   manifest = {
     "apiVersion" = "v1"
-    "kind" = "Service"
+    "kind"       = "Service"
     "metadata" = {
       "labels" = {
         "gatekeeper.sh/system" = "yes"
       }
-      "name" = "gatekeeper-webhook-service"
+      "name"      = "gatekeeper-webhook-service"
       "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
     }
     "spec" = {
       "ports" = [
         {
-          "port" = 443
+          "port"       = 443
           "targetPort" = 8443
-	  "protocol" = "TCP"
+          "protocol"   = "TCP"
         },
       ]
       "selector" = {
-        "control-plane" = "controller-manager"
+        "control-plane"           = "controller-manager"
         "gatekeeper.sh/operation" = "webhook"
-        "gatekeeper.sh/system" = "yes"
+        "gatekeeper.sh/system"    = "yes"
       }
     }
   }

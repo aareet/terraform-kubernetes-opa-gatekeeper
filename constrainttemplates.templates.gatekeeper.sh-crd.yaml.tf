@@ -3,19 +3,19 @@ resource "kubernetes_manifest" "customresourcedefinition_constrainttemplates_tem
 
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1beta1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
-      "creationTimestamp" = null
+
       "labels" = {
         "controller-tools.k8s.io" = "1.0"
-        "gatekeeper.sh/system" = "yes"
+        "gatekeeper.sh/system"    = "yes"
       }
       "name" = "constrainttemplates.templates.gatekeeper.sh"
     }
     "spec" = {
       "group" = "templates.gatekeeper.sh"
       "names" = {
-        "kind" = "ConstraintTemplate"
+        "kind"   = "ConstraintTemplate"
         "plural" = "constrainttemplates"
       }
       "scope" = "Cluster"
@@ -27,11 +27,11 @@ resource "kubernetes_manifest" "customresourcedefinition_constrainttemplates_tem
           "properties" = {
             "apiVersion" = {
               "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-              "type" = "string"
+              "type"        = "string"
             }
             "kind" = {
               "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-              "type" = "string"
+              "type"        = "string"
             }
             "metadata" = {
               "type" = "object"
@@ -116,11 +116,11 @@ resource "kubernetes_manifest" "customresourcedefinition_constrainttemplates_tem
                       }
                       "id" = {
                         "description" = "a unique identifier for the pod that wrote the status"
-                        "type" = "string"
+                        "type"        = "string"
                       }
                       "observedGeneration" = {
                         "format" = "int64"
-                        "type" = "integer"
+                        "type"   = "integer"
                       }
                     }
                     "type" = "object"
@@ -139,13 +139,13 @@ resource "kubernetes_manifest" "customresourcedefinition_constrainttemplates_tem
       "version" = "v1beta1"
       "versions" = [
         {
-          "name" = "v1beta1"
-          "served" = true
+          "name"    = "v1beta1"
+          "served"  = true
           "storage" = true
         },
         {
-          "name" = "v1alpha1"
-          "served" = true
+          "name"    = "v1alpha1"
+          "served"  = true
           "storage" = false
         },
       ]
