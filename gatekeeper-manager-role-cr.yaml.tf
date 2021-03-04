@@ -3,9 +3,9 @@ resource "kubernetes_manifest" "clusterrole_gatekeeper_manager_role" {
 
   manifest = {
     "apiVersion" = "rbac.authorization.k8s.io/v1"
-    "kind" = "ClusterRole"
+    "kind"       = "ClusterRole"
     "metadata" = {
-      "creationTimestamp" = null
+
       "labels" = {
         "gatekeeper.sh/system" = "yes"
       }

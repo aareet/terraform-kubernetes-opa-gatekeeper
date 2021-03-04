@@ -3,23 +3,23 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
 
   manifest = {
     "apiVersion" = "apps/v1"
-    "kind" = "Deployment"
+    "kind"       = "Deployment"
     "metadata" = {
       "labels" = {
-        "control-plane" = "controller-manager"
+        "control-plane"           = "controller-manager"
         "gatekeeper.sh/operation" = "webhook"
-        "gatekeeper.sh/system" = "yes"
+        "gatekeeper.sh/system"    = "yes"
       }
-      "name" = "gatekeeper-controller-manager"
+      "name"      = "gatekeeper-controller-manager"
       "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
     }
     "spec" = {
       "replicas" = 3
       "selector" = {
         "matchLabels" = {
-          "control-plane" = "controller-manager"
+          "control-plane"           = "controller-manager"
           "gatekeeper.sh/operation" = "webhook"
-          "gatekeeper.sh/system" = "yes"
+          "gatekeeper.sh/system"    = "yes"
         }
       }
       "template" = {
@@ -28,9 +28,9 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
             "container.seccomp.security.alpha.kubernetes.io/manager" = "runtime/default"
           }
           "labels" = {
-            "control-plane" = "controller-manager"
+            "control-plane"           = "controller-manager"
             "gatekeeper.sh/operation" = "webhook"
-            "gatekeeper.sh/system" = "yes"
+            "gatekeeper.sh/system"    = "yes"
           }
         }
         "spec" = {
@@ -42,7 +42,7 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
                     "labelSelector" = {
                       "matchExpressions" = [
                         {
-                          "key" = "gatekeeper.sh/operation"
+                          "key"      = "gatekeeper.sh/operation"
                           "operator" = "In"
                           "values" = [
                             "webhook",
@@ -75,7 +75,7 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
                   "valueFrom" = {
                     "fieldRef" = {
                       "apiVersion" = "v1"
-                      "fieldPath" = "metadata.namespace"
+                      "fieldPath"  = "metadata.namespace"
                     }
                   }
                 },
@@ -88,7 +88,7 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
                   }
                 },
               ]
-              "image" = "openpolicyagent/gatekeeper:v3.4.0-beta.0"
+              "image"           = "openpolicyagent/gatekeeper:v3.4.0-beta.0"
               "imagePullPolicy" = "Always"
               "livenessProbe" = {
                 "httpGet" = {
@@ -100,18 +100,18 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
               "ports" = [
                 {
                   "containerPort" = 8443
-                  "name" = "webhook-server"
-                  "protocol" = "TCP"
+                  "name"          = "webhook-server"
+                  "protocol"      = "TCP"
                 },
                 {
                   "containerPort" = 8888
-                  "name" = "metrics"
-                  "protocol" = "TCP"
+                  "name"          = "metrics"
+                  "protocol"      = "TCP"
                 },
                 {
                   "containerPort" = 9090
-                  "name" = "healthz"
-                  "protocol" = "TCP"
+                  "name"          = "healthz"
+                  "protocol"      = "TCP"
                 },
               ]
               "readinessProbe" = {
@@ -122,11 +122,11 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
               }
               "resources" = {
                 "limits" = {
-                  "cpu" = "1000m"
+                  "cpu"    = "1"
                   "memory" = "512Mi"
                 }
                 "requests" = {
-                  "cpu" = "100m"
+                  "cpu"    = "100m"
                   "memory" = "256Mi"
                 }
               }
@@ -138,15 +138,15 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
                   ]
                 }
                 "readOnlyRootFilesystem" = true
-                "runAsGroup" = 999
-                "runAsNonRoot" = true
-                "runAsUser" = 1000
+                "runAsGroup"             = 999
+                "runAsNonRoot"           = true
+                "runAsUser"              = 1000
               }
               "volumeMounts" = [
                 {
                   "mountPath" = "/certs"
-                  "name" = "cert"
-                  "readOnly" = true
+                  "name"      = "cert"
+                  "readOnly"  = true
                 },
               ]
             },
@@ -154,14 +154,14 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
           "nodeSelector" = {
             "kubernetes.io/os" = "linux"
           }
-          "serviceAccountName" = "gatekeeper-admin"
+          "serviceAccountName"            = "gatekeeper-admin"
           "terminationGracePeriodSeconds" = 60
           "volumes" = [
             {
               "name" = "cert"
               "secret" = {
                 "defaultMode" = 420
-                "secretName" = "gatekeeper-webhook-server-cert"
+                "secretName"  = "gatekeeper-webhook-server-cert"
               }
             },
           ]

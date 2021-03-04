@@ -3,12 +3,12 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
 
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1beta1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "annotations" = {
         "controller-gen.kubebuilder.io/version" = "v0.3.0"
       }
-      "creationTimestamp" = null
+
       "labels" = {
         "gatekeeper.sh/system" = "yes"
       }
@@ -17,9 +17,9 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
     "spec" = {
       "group" = "status.gatekeeper.sh"
       "names" = {
-        "kind" = "ConstraintPodStatus"
+        "kind"     = "ConstraintPodStatus"
         "listKind" = "ConstraintPodStatusList"
-        "plural" = "constraintpodstatuses"
+        "plural"   = "constraintpodstatuses"
         "singular" = "constraintpodstatus"
       }
       "scope" = "Namespaced"
@@ -29,11 +29,11 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
           "properties" = {
             "apiVersion" = {
               "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-              "type" = "string"
+              "type"        = "string"
             }
             "kind" = {
               "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-              "type" = "string"
+              "type"        = "string"
             }
             "metadata" = {
               "type" = "object"
@@ -43,7 +43,7 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
               "properties" = {
                 "constraintUID" = {
                   "description" = "Storing the constraint UID allows us to detect drift, such as when a constraint has been recreated after its CRD was deleted out from under it, interrupting the watch"
-                  "type" = "string"
+                  "type"        = "string"
                 }
                 "enforced" = {
                   "type" = "boolean"
@@ -75,7 +75,7 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
                 }
                 "observedGeneration" = {
                   "format" = "int64"
-                  "type" = "integer"
+                  "type"   = "integer"
                 }
                 "operations" = {
                   "items" = {
@@ -93,8 +93,8 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
       "version" = "v1beta1"
       "versions" = [
         {
-          "name" = "v1beta1"
-          "served" = true
+          "name"    = "v1beta1"
+          "served"  = true
           "storage" = true
         },
       ]

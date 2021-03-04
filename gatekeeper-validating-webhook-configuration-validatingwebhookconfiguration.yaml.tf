@@ -3,9 +3,9 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_gatekeeper_valida
 
   manifest = {
     "apiVersion" = "admissionregistration.k8s.io/v1beta1"
-    "kind" = "ValidatingWebhookConfiguration"
+    "kind"       = "ValidatingWebhookConfiguration"
     "metadata" = {
-      "creationTimestamp" = null
+
       "labels" = {
         "gatekeeper.sh/system" = "yes"
       }
@@ -16,17 +16,17 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_gatekeeper_valida
         "clientConfig" = {
           "caBundle" = "Cg=="
           "service" = {
-            "name" = "gatekeeper-webhook-service"
+            "name"      = "gatekeeper-webhook-service"
             "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
-            "path" = "/v1/admit"
+            "path"      = "/v1/admit"
           }
         }
         "failurePolicy" = "Ignore"
-        "name" = "validation.gatekeeper.sh"
+        "name"          = "validation.gatekeeper.sh"
         "namespaceSelector" = {
           "matchExpressions" = [
             {
-              "key" = "admission.gatekeeper.sh/ignore"
+              "key"      = "admission.gatekeeper.sh/ignore"
               "operator" = "DoesNotExist"
             },
           ]
@@ -48,20 +48,20 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_gatekeeper_valida
             ]
           },
         ]
-        "sideEffects" = "None"
+        "sideEffects"    = "None"
         "timeoutSeconds" = 3
       },
       {
         "clientConfig" = {
           "caBundle" = "Cg=="
           "service" = {
-            "name" = "gatekeeper-webhook-service"
+            "name"      = "gatekeeper-webhook-service"
             "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
-            "path" = "/v1/admitlabel"
+            "path"      = "/v1/admitlabel"
           }
         }
         "failurePolicy" = "Fail"
-        "name" = "check-ignore-label.gatekeeper.sh"
+        "name"          = "check-ignore-label.gatekeeper.sh"
         "rules" = [
           {
             "apiGroups" = [
@@ -79,7 +79,7 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_gatekeeper_valida
             ]
           },
         ]
-        "sideEffects" = "None"
+        "sideEffects"    = "None"
         "timeoutSeconds" = 3
       },
     ]

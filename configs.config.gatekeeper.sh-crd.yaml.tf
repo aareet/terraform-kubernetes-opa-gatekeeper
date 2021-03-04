@@ -3,12 +3,12 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
 
   manifest = {
     "apiVersion" = "apiextensions.k8s.io/v1beta1"
-    "kind" = "CustomResourceDefinition"
+    "kind"       = "CustomResourceDefinition"
     "metadata" = {
       "annotations" = {
         "controller-gen.kubebuilder.io/version" = "v0.3.0"
       }
-      "creationTimestamp" = null
+
       "labels" = {
         "gatekeeper.sh/system" = "yes"
       }
@@ -17,9 +17,9 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
     "spec" = {
       "group" = "config.gatekeeper.sh"
       "names" = {
-        "kind" = "Config"
+        "kind"     = "Config"
         "listKind" = "ConfigList"
-        "plural" = "configs"
+        "plural"   = "configs"
         "singular" = "config"
       }
       "scope" = "Namespaced"
@@ -29,11 +29,11 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
           "properties" = {
             "apiVersion" = {
               "description" = "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
-              "type" = "string"
+              "type"        = "string"
             }
             "kind" = {
               "description" = "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
-              "type" = "string"
+              "type"        = "string"
             }
             "metadata" = {
               "type" = "object"
@@ -104,7 +104,7 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
                         "properties" = {
                           "dump" = {
                             "description" = "Also dump the state of OPA with the trace. Set to `All` to dump everything."
-                            "type" = "string"
+                            "type"        = "string"
                           }
                           "kind" = {
                             "description" = "Only trace requests of the following GroupVersionKind"
@@ -123,7 +123,7 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
                           }
                           "user" = {
                             "description" = "Only trace requests from the specified user"
-                            "type" = "string"
+                            "type"        = "string"
                           }
                         }
                         "type" = "object"
@@ -143,8 +143,8 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
       "version" = "v1alpha1"
       "versions" = [
         {
-          "name" = "v1alpha1"
-          "served" = true
+          "name"    = "v1alpha1"
+          "served"  = true
           "storage" = true
         },
       ]
