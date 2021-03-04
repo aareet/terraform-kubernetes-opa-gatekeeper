@@ -10,7 +10,6 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_gatekeeper_valida
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-validating-webhook-configuration"
-      "namespace" = "default"
     }
     "webhooks" = [
       {
@@ -18,7 +17,7 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_gatekeeper_valida
           "caBundle" = "Cg=="
           "service" = {
             "name" = "gatekeeper-webhook-service"
-            "namespace" = "gatekeeper-system"
+            "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
             "path" = "/v1/admit"
           }
         }
@@ -57,7 +56,7 @@ resource "kubernetes_manifest" "validatingwebhookconfiguration_gatekeeper_valida
           "caBundle" = "Cg=="
           "service" = {
             "name" = "gatekeeper-webhook-service"
-            "namespace" = "gatekeeper-system"
+            "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
             "path" = "/v1/admitlabel"
           }
         }

@@ -13,7 +13,6 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "configs.config.gatekeeper.sh"
-      "namespace" = "default"
     }
     "spec" = {
       "group" = "config.gatekeeper.sh"
@@ -137,10 +136,6 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
               }
               "type" = "object"
             }
-            "status" = {
-              "description" = "ConfigStatus defines the observed state of Config"
-              "type" = "object"
-            }
           }
           "type" = "object"
         }
@@ -153,14 +148,6 @@ resource "kubernetes_manifest" "customresourcedefinition_configs_config_gatekeep
           "storage" = true
         },
       ]
-    }
-    "status" = {
-      "acceptedNames" = {
-        "kind" = ""
-        "plural" = ""
-      }
-      "conditions" = []
-      "storedVersions" = []
     }
   }
 }

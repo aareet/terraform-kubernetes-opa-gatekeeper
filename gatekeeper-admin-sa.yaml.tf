@@ -9,7 +9,7 @@ resource "kubernetes_manifest" "serviceaccount_gatekeeper_admin" {
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-admin"
-      "namespace" = "gatekeeper-system"
+      "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
     }
   }
 }

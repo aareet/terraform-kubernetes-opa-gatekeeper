@@ -12,7 +12,6 @@ resource "kubernetes_manifest" "podsecuritypolicy_gatekeeper_admin" {
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-admin"
-      "namespace" = "default"
     }
     "spec" = {
       "allowPrivilegeEscalation" = false

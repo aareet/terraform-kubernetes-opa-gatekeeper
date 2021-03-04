@@ -9,7 +9,7 @@ resource "kubernetes_manifest" "rolebinding_gatekeeper_manager_rolebinding" {
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-manager-rolebinding"
-      "namespace" = "gatekeeper-system"
+      "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
     }
     "roleRef" = {
       "apiGroup" = "rbac.authorization.k8s.io"
@@ -20,7 +20,7 @@ resource "kubernetes_manifest" "rolebinding_gatekeeper_manager_rolebinding" {
       {
         "kind" = "ServiceAccount"
         "name" = "gatekeeper-admin"
-        "namespace" = "gatekeeper-system"
+        "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
       },
     ]
   }

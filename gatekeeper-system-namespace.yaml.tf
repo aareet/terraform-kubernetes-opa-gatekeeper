@@ -11,7 +11,6 @@ resource "kubernetes_manifest" "namespace_gatekeeper_system" {
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-system"
-      "namespace" = "default"
     }
   }
 }

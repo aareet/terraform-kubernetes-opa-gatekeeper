@@ -10,7 +10,6 @@ resource "kubernetes_manifest" "clusterrole_gatekeeper_manager_role" {
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-manager-role"
-      "namespace" = "default"
     }
     "rules" = [
       {

@@ -11,7 +11,6 @@ resource "kubernetes_manifest" "customresourcedefinition_constrainttemplates_tem
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "constrainttemplates.templates.gatekeeper.sh"
-      "namespace" = "default"
     }
     "spec" = {
       "group" = "templates.gatekeeper.sh"
@@ -150,14 +149,6 @@ resource "kubernetes_manifest" "customresourcedefinition_constrainttemplates_tem
           "storage" = false
         },
       ]
-    }
-    "status" = {
-      "acceptedNames" = {
-        "kind" = ""
-        "plural" = ""
-      }
-      "conditions" = []
-      "storedVersions" = []
     }
   }
 }

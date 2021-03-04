@@ -13,7 +13,6 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "constraintpodstatuses.status.gatekeeper.sh"
-      "namespace" = "default"
     }
     "spec" = {
       "group" = "status.gatekeeper.sh"
@@ -99,14 +98,6 @@ resource "kubernetes_manifest" "customresourcedefinition_constraintpodstatuses_s
           "storage" = true
         },
       ]
-    }
-    "status" = {
-      "acceptedNames" = {
-        "kind" = ""
-        "plural" = ""
-      }
-      "conditions" = []
-      "storedVersions" = []
     }
   }
 }

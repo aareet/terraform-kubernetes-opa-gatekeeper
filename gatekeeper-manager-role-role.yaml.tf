@@ -10,7 +10,7 @@ resource "kubernetes_manifest" "role_gatekeeper_manager_role" {
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-manager-role"
-      "namespace" = "gatekeeper-system"
+      "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
     }
     "rules" = [
       {

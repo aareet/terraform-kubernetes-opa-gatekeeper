@@ -11,7 +11,7 @@ resource "kubernetes_manifest" "deployment_gatekeeper_audit" {
         "gatekeeper.sh/system" = "yes"
       }
       "name" = "gatekeeper-audit"
-      "namespace" = "gatekeeper-system"
+      "namespace" = kubernetes_manifest.namespace_gatekeeper_system.object.metadata.name
     }
     "spec" = {
       "replicas" = 1
