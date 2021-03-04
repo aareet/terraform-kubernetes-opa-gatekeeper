@@ -122,7 +122,7 @@ resource "kubernetes_manifest" "deployment_gatekeeper_controller_manager" {
               }
               "resources" = {
                 "limits" = {
-                  "cpu" = "1000m"
+                  "cpu" = "1"
                   "memory" = "512Mi"
                 }
                 "requests" = {
